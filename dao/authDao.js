@@ -1,13 +1,10 @@
 const db = require('../db')
 
-
 module.exports.getUser = function(login) {
     return new Promise(async (resolve, reject) => {
         console.log("ищем пользователя по логину!")
         const user = await db.query('select * from users where login = $1;', [login])
         resolve(user)
-        //
-
     })
 }
 
@@ -16,8 +13,6 @@ module.exports.getUserName = function(user_id) {
         console.log("ищем пользователя по логину!")
         const user = await db.query('select * from users where user_id = $1;', [user_id])
         resolve(user)
-        //
-
     })
 }
 
@@ -36,7 +31,6 @@ module.exports.addToken = function(user_id, token) {
         const newUser =
             await db.query('INSERT INTO token (user_id, token) VALUES ($1, $2) RETURNING *', [user_id, token])
         resolve(newUser.rows);
-
     })
 }
 

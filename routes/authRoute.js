@@ -127,8 +127,6 @@ route.get('/getNotesAndFolders', (req, res) => {
         }})
 })
 
-//
-
 route.get('/:id/getNotesAndFolders', (req, res) => {
     console.log("get all in folder")
     auth2(req.headers.authorization).then(result => {
@@ -214,70 +212,5 @@ route.post('/addFolder', (req,res) => {
         }
     })
 });
-
-// route.get('/allFolders', auth, (req, res) => {
-//     console.log("get all folders")
-//     auth2(req.headers.authorization).then(result =>{
-//         console.log("в вызове ->", result)
-//         if (result.length === 0){
-//             console.log("in if")
-//             res.json({
-//                 answ: "no login"
-//             })
-//         } else {
-//             const token = req.headers.authorization
-//             authDAO.getToken(token)
-//                 .then( result => {
-//                         let user_id = result[0].user_id;
-//                         folderDAO.getFolder(user_id)
-//                             .then(result =>{
-//                                 res.json({
-//                                     folders: result
-//                                 })})
-//                     }
-//                 )
-//         }
-//     })
-// });
-
-
-// route.get('/:id/getNotes', auth, (req, res) => {
-//     console.log("get all in folder")
-//     const token = req.headers.authorization
-//     authDAO.getToken(token)
-//         .then( result => {
-//                 let user_id = result[0].user_id;
-//                 let folder_id = req.params['id']
-//                 noteDAO.getNotesFromFolder(user_id, folder_id)
-//                     .then(result =>{
-//                         res.json({
-//                             notes: result
-//                         })})
-//             }
-//         )
-// });
-
-// убрать undefined undefined/
-// route.get('/allNotes', auth, (req, res) => {
-//     auth2(req.headers.authorization).then(result =>{
-//         console.log("в вызове ->", result)
-//         console.log(result.length)
-//         if (result.length){
-//
-//         }
-//     })
-//     console.log("get all notes")
-//     const token = req.headers.authorization
-//     authDAO.getToken(token)
-//         .then( result => {
-//             let user_id = result[0].user_id;
-//             noteDAO.getNote(user_id)
-//                 .then(result =>{
-//                     res.json({
-//                         notes: result
-//                     })})
-//         }
-//     )
-// });
 
 module.exports = route;
